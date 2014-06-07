@@ -1,0 +1,6 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+    <defaultCache
+            maxElementsInMemory="500" eternal="true" overflowToDisk="false" memoryStoreEvictionPolicy="LFU"/>
+    <cache name="contactCache" maxElementsInMemory="500" eternal="true" overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+</ehcache>

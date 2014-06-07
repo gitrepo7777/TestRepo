@@ -1,0 +1,13 @@
+<jaxb:bindings version="1.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<!-- JAXB mapping customizations to place the domain objects in 
+	a specific package. -->
+	<jaxb:bindings schemaLocation="Domain.xsd" node="/xs:schema">
+		<jaxb:schemaBindings>
+			<jaxb:package
+				name="org.mpilone.spring.web.domain" />
+		</jaxb:schemaBindings>
+	</jaxb:bindings>
+
+</jaxb:bindings>

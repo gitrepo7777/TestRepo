@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>#{msgs.WindowTitle}</title>
+</h:head>
+<h:body>
+<h:form prependId="false">
+	<h3>Welcome to JavaServer Faces, #{user.name}!!!</h3>
+
+	<h:inputText value="#{user.name}" id="name"></h:inputText>
+
+	<h:inputSecret value="#{user.password}" id="password">
+	</h:inputSecret>
+	<h:commandButton value="login">
+		<f:ajax execute="name password" render="out" />
+	</h:commandButton>
+	<h3>
+		<h:outputText id="out" value="#{user.greeting}" />
+	</h3>
+	
+	<h:commandButton value="MethodExpression" action="#{user.methodExpr}"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

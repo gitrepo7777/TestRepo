@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0_27 (Sun Microsystems Inc.)
+
+Name: src/bean/BoundPoint.aj
+SHA1-Digest: bxpecTYIP/F/SiwsD2GaA0r0e38=
+
+Name: .classpath
+SHA1-Digest: Un1igUCADyBbK2arm/27ER9OtPc=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
+
+Name: src/bean/Point.java
+SHA1-Digest: 4LJBZ/2hsW5ZtC0JfgjeLdh5S5Y=
+
+Name: src/bean/Demo.java
+SHA1-Digest: 3OemLcvykQ3jiqN0gczfvZNHFxo=
+

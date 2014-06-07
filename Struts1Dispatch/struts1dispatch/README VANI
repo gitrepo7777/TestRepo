@@ -1,0 +1,44 @@
+vani : add GlassFish Library / User Library to the project
+
+Problem
+
+A very strange and rare problem, happened in JPA or Hibernate development.
+
+Caused by: java.lang.ClassFormatError: Absent Code attribute in method that is 
+        not native or abstract in class file javax/persistence/GenerationType
+ 
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClassCond(Unknown Source)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at java.security.SecureClassLoader.defineClass(Unknown Source)
+	at java.net.URLClassLoader.defineClass(Unknown Source)
+	at java.net.URLClassLoader.access$000(Unknown Source)
+	at java.net.URLClassLoader$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknow
+
+Solution
+
+This is always caused by the javaee.jar which is located at Java.net. Many developers like to grab the javaee.jar with the following Maven coordinate :
+
+  <repositories>
+  	<repository>
+  		<id>Java.Net</id>
+  		<url>http://download.java.net/maven/2/</url>
+  	</repository>
+  </repositories>
+ 
+  <dependencies>
+    <!-- Javaee API -->
+	<dependency>
+    	<groupId>javax</groupId>
+    	<artifactId>javaee-api</artifactId>
+    	<version>6.0</version>
+	</dependency>
+  </dependencies>
+
+But, the javaee.jar from java.net is not contains any method bodies, but the APIs name only. Which is not suitable to use for running or deploying along with your application.
+The good practice is always get the original full version of javaee.jar file from the http://java.sun.com/javaee/. Just download and install the J2EE SDK, and the javaee.jar can be found in the “\J2EE_SDK_FOLDER\lib” folder. Include it into your local Maven repository or poject classpath will get rid of the above error message.

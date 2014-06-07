@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Ajax4 XML Example</title>
+<script type="text/javascript">
+
+var xmlhttp;
+
+if (window.XMLHttpRequest)
+  {
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+function loadXMLDoc()
+{
+	var txt,first,i;
+
+	if(xmlhttp){
+	xmlhttp.open("GET","employee_data.xml",true);
+	xmlhttp.onreadystatechange=function() {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+		var xmlDoc=xmlhttp.responseXML;
+		txt="";
+		first=xmlDoc.getElementsByTagName("first");
+		for (i=0;i<first.length;i++) {
+		  txt=txt + first[i].childNodes[0].nodeValue + "<br />";
+		 }
+		document.getElementById("myDiv").innerHTML=txt;
+		}
+	  }
+
+	  xmlhttp.send(null);
+	}
+}//function end
+</script>
+</head>
+
+<body>
+
+<h2>Employee Data</h2>
+<div id="myDiv"></div>
+<br />
+<button type="button" onclick="loadXMLDoc()">Get Employee Names</button>
+
+</body>
+</html>
+

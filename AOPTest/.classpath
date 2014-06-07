@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Section4.4.2ImplementingSimpleCaching/src/main/java"/>
+	<classpathentry kind="src" path="Section4.4.2ImplementingSimpleCaching/src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_26"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SPRING3.1_LIBRARY"/>
+	<classpathentry kind="lib" path="C:/jars/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/jars/oscache-2.4.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/GlassFish3.1.2">
+		<attributes>
+			<attribute name="owner.project.facets" value="jpt.jpa"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/MySQL JDBC Driver"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

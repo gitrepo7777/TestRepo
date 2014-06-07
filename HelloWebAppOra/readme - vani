@@ -1,0 +1,11 @@
+@Inject not working with Oracle Weblogic server
+
+ServletException.
+org.jboss.weld.exceptions.DeploymentException: WELD-001408 Unsatisfied dependencies for type [HelloService] with qualifiers [@Default] at injection point [[field] @Inject org.jboss.as.quickstarts.helloworld.HelloWorldServlet.helloService]
+	at org.jboss.weld.bootstrap.Validator.validateInjectionPoint(Validator.java:258)
+	at org.jboss.weld.bootstrap.Validator.validateInjectionTarget(Validator.java:280)
+	at org.jboss.weld.manager.InjectionTargetValidator.addInjectionTarget(InjectionTargetValidator.java:29)
+	at org.jboss.weld.manager.BeanManagerImpl.createInjectionTarget(BeanManagerImpl.java:919)
+	at org.jboss.weld.manager.BeanManagerImpl.fireProcessInjectionTarget(BeanManagerImpl.java:1070)
+	Truncated. see log file for complete stacktrace
+> 

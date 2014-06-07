@@ -1,0 +1,16 @@
+C:\JunoWorkspace\jax-ws-docstyle\build\classes>wsgen -keep -cp . com.mkyong.ws.HelloWorldImpl
+
+C:\JunoWorkspace\jax-ws-docstyle\build\classes>wsgen -keep -cp . com.mkyong.ws.HelloWorldImpl -wsdl
+
+
+wsgen command
+
+Document style requires extra classes to run, you can use “wsgen” to generate all necessary Java artifacts (mapping classes, wsdl or xsd schema).
+The “wsgen” command is required to read a service endpoint implementation class :
+
+if these classes are not generated, then Dynamic files are created ==> logs : 
+Jan 8, 2013 5:56:41 PM com.sun.xml.internal.ws.model.RuntimeModeler getRequestWrapperClass
+INFO: Dynamically creating request wrapper Class com.mkyong.ws.jaxws.GetHelloWorldAsString
+Jan 8, 2013 5:56:41 PM com.sun.xml.internal.ws.model.RuntimeModeler getResponseWrapperClass
+INFO: Dynamically creating response wrapper bean Class com.mkyong.ws.jaxws.GetHelloWorldAsStringResponse
+Hello World JAX-WS mkyong

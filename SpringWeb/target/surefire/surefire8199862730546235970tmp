@@ -1,0 +1,5 @@
+#surefire
+#Mon Sep 16 12:11:19 EDT 2013
+user.dir=C\:\\MyWorkspaces\\TestWorkspace\\SpringWeb
+localRepository=C\:\\Users\\Y\\.m2\\repository
+basedir=C\:\\MyWorkspaces\\TestWorkspace\\SpringWeb

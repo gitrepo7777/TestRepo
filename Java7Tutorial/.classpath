@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="collections/algorithms/examples"/>
+	<classpathentry kind="src" path="collections/interfaces/examples"/>
+	<classpathentry kind="src" path="collections/interfaces/QandE"/>
+	<classpathentry kind="src" path="2d/advanced/examples"/>
+	<classpathentry excluding="examples/" kind="src" path="2d/advanced"/>
+	<classpathentry excluding="algorithms/examples/|interfaces/examples/|interfaces/QandE/" kind="src" path="collections"/>
+	<classpathentry kind="src" path="essential/concurrency/QandE"/>
+	<classpathentry excluding="QandE/" kind="src" path="essential/concurrency"/>
+	<classpathentry kind="src" path="essential/io/examples"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

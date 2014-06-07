@@ -1,0 +1,5 @@
+#surefire
+#Tue Aug 07 08:48:44 EDT 2012
+user.dir=C\:\\TestWorkspace\\spring-ws-rest
+localRepository=C\:\\Users\\Y\\.m2\\repository
+basedir=C\:\\TestWorkspace\\spring-ws-rest

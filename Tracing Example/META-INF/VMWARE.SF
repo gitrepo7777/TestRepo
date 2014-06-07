@@ -1,0 +1,62 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: NP7v3c51f/CiJY29pV+onmY0uFs=
+Created-By: 1.6.0_27 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: oRzOxtO0NY/LzcxT8g5G4rjk1h0=
+
+Name: src/tracing/version2/TraceMyClasses.aj
+SHA1-Digest: dSQMTzXHdUba4c9cq8EOjW0rc/E=
+
+Name: src/tracing/ExampleMain.java
+SHA1-Digest: KHUSMIVjMfpP5KVkSZapNSeODKI=
+
+Name: src/tracing/Circle.java
+SHA1-Digest: 2zcE60G1tSag4YlIu9GhkXY68Xs=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: QdryQvJlVywlE0MGLuwYCkmkyWk=
+
+Name: src/tracing/version1/TraceMyClasses.aj
+SHA1-Digest: MN6G3DE+hOIOc8dWgSPFWKDhGmc=
+
+Name: notrace.ajproperties
+SHA1-Digest: o0/nOSJXxShZjWxLswh1ofGv42Q=
+
+Name: src/tracing/lib/TraceMyClasses.aj
+SHA1-Digest: iCmULh22Keq0fDbJr/8Q52nX/Ag=
+
+Name: tracelib.ajproperties
+SHA1-Digest: dcDr+d2bnsGzGiV601oOL8uzbLs=
+
+Name: src/tracing/TwoDShape.java
+SHA1-Digest: 76EWneFSrv/3Mab8i+HCg1pynRs=
+
+Name: src/tracing/version2/Trace.aj
+SHA1-Digest: sUz5yd9lwop0SqD3gv8hT9qeTIA=
+
+Name: tracev3.ajproperties
+SHA1-Digest: jji9QTmSe9vCH8Pc05uWb9dE+Co=
+
+Name: src/tracing/Square.java
+SHA1-Digest: g+QtXjZ1faDNzQlB/6cWn7ovWWY=
+
+Name: .classpath
+SHA1-Digest: Pi6KGx8T4xHKDNGButK2ack+dgI=
+
+Name: tracev2.ajproperties
+SHA1-Digest: a1JfP00NfFUYCKYG+7KG82N8eMU=
+
+Name: src/tracing/version3/Trace.aj
+SHA1-Digest: 8xN1GTdaQNfgDZO41VhdiX787wE=
+
+Name: src/tracing/lib/AbstractTrace.aj
+SHA1-Digest: 2tjZU5/Ijjh7CQmhsPqIPxj+zGo=
+
+Name: src/tracing/version3/TraceMyClasses.aj
+SHA1-Digest: dpGMuU6vZhraxt4REtGCbhLYUU4=
+
+Name: src/tracing/version1/Trace.java
+SHA1-Digest: Rd+dcJbV9t+IYEK6pjFLzOM2/bQ=
+
+Name: tracev1.ajproperties
+SHA1-Digest: 5HTL7R38Q/3PC+IW++C/i82vAEw=
+

@@ -1,0 +1,57 @@
+<jxb:bindings version="1.0"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs1="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:com.fnf="http://www.fnf.com/xes">
+	<!-- Customize the package name that is generated for each schema -->
+
+
+	<jxb:bindings schemaLocation="dtcc/OTC_RM_EPMS_1-0.xsd"
+		node="/xs1:schema">
+		<jxb:schemaBindings>
+			<jxb:package name="com.bofaml.derivmatch.messages.equity.dtcc.otc_rm" />
+		</jxb:schemaBindings>
+	</jxb:bindings>
+
+	<jxb:bindings schemaLocation="dtcc/OTC_Products_EPMS_1-0.xsd"
+		node="/xs1:schema">
+		<jxb:schemaBindings>
+			<jxb:package
+				name="com.bofaml.derivmatch.messages.equity.dtcc.otc_products" />
+		</jxb:schemaBindings>
+	</jxb:bindings>
+
+	<jxb:bindings schemaLocation="xmls/OTC/xmldsig-core-schema.xsd"
+		node="/xs1:schema">
+		<jxb:schemaBindings>
+			<jxb:package
+				name="com.bofaml.derivmatch.messages.equity.dtcc.xmldsig_core" />
+		</jxb:schemaBindings>
+	</jxb:bindings>
+	
+	<jxb:bindings schemaLocation="xmls/OTC/fpml-reconciliation-4-7.xsd"
+		node="/xs1:schema">
+		<jxb:schemaBindings>
+			<jxb:package
+				name="com.bofaml.derivmatch.messages.equity.dtcc.fpml-reconciliation" />
+		</jxb:schemaBindings>
+	</jxb:bindings>
+
+	<jxb:bindings schemaLocation="dtcc/OTC_Matching_EPMS_1-0.xsd"
+		node="/xs1:schema">
+		<jxb:schemaBindings>
+			<jxb:package
+				name="com.bofaml.derivmatch.messages.equity.dtcc.otc_matching_epms" />
+		</jxb:schemaBindings>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="xmls/OTC/fpml-main-4-7.xsd"
+		node="/xs1:schema">
+		<jxb:schemaBindings>
+			<jxb:package name="com.bofaml.derivmatch.messages.equity.swdml_47" />
+		</jxb:schemaBindings>
+	</jxb:bindings>
+
+
+
+</jxb:bindings>

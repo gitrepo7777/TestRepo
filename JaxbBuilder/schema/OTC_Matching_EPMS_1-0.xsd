@@ -1,0 +1,498 @@
+<?xml version ="1.0" encoding = "UTF-8"?>
+<xsd:schema targetNamespace="OTC_Matching_EPMS_1-0" xmlns="OTC_Matching_EPMS_1-0" xmlns:rm="OTC_RM_EPMS_1-0" xmlns:products="OTC_Products_EPMS_1-0" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2009/FpML-4-7
+	/xmls/OTC/fpml-main-4-7.xsd" version="1-0_2010-11-13">
+	<xsd:import namespace="http://www.fpml.org/2009/FpML-4-7" schemaLocation="/xmls/OTC/fpml-main-4-7.xsd" />
+	<xsd:import namespace="OTC_RM_EPMS_1-0" schemaLocation="/xmls/OTC/OTC_RM_EPMS_1-0.xsd" />
+	<xsd:import namespace="OTC_Products_EPMS_1-0" schemaLocation="/xmls/OTC/OTC_Products_EPMS_1-0.xsd" />
+	<!-- CONFIDENTIAL AND PROPRIETARY
+	   Copyright (c) 2002-2009 The Depository Trust & Clearing Corporation.  
+	   All rights reserved.
+	   By receipt and review of these materials, the recipient acknowledges and agrees that these materials are and shall remain, and be treated and maintained by any recipient, as confidential and as such may not be disclosed. Further, the recipient agrees that all copyright and other intellectual property rights in or relating to these materials are and shall remain the property of DTCC.
+	 -->
+	<!-- Begin Level 1 =============================================-->
+	<xsd:element name="OTC_Matching">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="Activity"/>
+				<xsd:element ref="Status"/>
+				<xsd:element ref="LinkStatus" minOccurs="0"/>
+				<xsd:element ref="CounterpartySubmissionStatus" minOccurs="0"/>
+				<xsd:element ref="RecordSequence" minOccurs="0"/> 
+				<xsd:choice>
+					<xsd:element ref="Exit"/>
+					<xsd:element ref="Error"/>
+					<xsd:element ref="Payment"/>
+					<xsd:element ref="Net"/>
+				</xsd:choice>
+				<xsd:element ref="DkDetail" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="WorkflowData" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- End  Level 1 ===============================================-->
+	<!-- Begin Level 2 ==============================================-->
+	<xsd:element name="Exit">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="TradeReferenceInfo"/>
+							
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Error">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+					<xsd:element ref="ErrorMsgName"/>
+					<xsd:element ref="ErrorString"/>
+					<xsd:element ref="ErrorLocation"/>
+					<xsd:element ref="ErrorCode"/>
+				</xsd:sequence>
+				<xsd:element ref="ErrorDetail"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>	
+	<xsd:element name="Payment">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:sequence>
+						<xsd:element ref="fpml:FpML"/>
+						<xsd:element ref="NetGroup" minOccurs="0"/>
+						<xsd:element ref="DealInfo" minOccurs="0" maxOccurs="1"/>						
+						<xsd:element ref="BestMatch" minOccurs="0" maxOccurs="unbounded"/>						
+					</xsd:sequence>					
+					<xsd:sequence>
+						<xsd:element ref="TradeReferenceInfo" minOccurs="1" maxOccurs="1"/>
+						<xsd:element ref="CommentsHistory" minOccurs="0" maxOccurs="1"/>
+					</xsd:sequence>
+				</xsd:choice>
+				<xsd:element ref="OriginalAdjustedPaymentDate" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="OriginalUnadjustedPaymentDate" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Net">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="NetDetails" minOccurs="0"/>
+				<xsd:element ref="fpml:FpML"/>
+				<xsd:element ref="OriginalAdjustedPaymentDate" minOccurs="0"/>
+				<xsd:element ref="OriginalUnadjustedPaymentDate" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="WorkflowData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="URL" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="WorkflowTransType" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="PartyWorkflowFields" minOccurs="0" maxOccurs="2"/>
+				<xsd:element ref="ContraWorkflowFields" minOccurs="0" maxOccurs="2"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- End Level 2 ==============================================-->
+	<!-- Begin Level 3+ ==============================================-->
+	<xsd:element name="TradeReferenceInfo">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:sequence>
+						<xsd:element ref="Submitter"/>						
+						<xsd:element ref="ContraTradeId" minOccurs="0" maxOccurs="1"/>
+					</xsd:sequence>					
+					<xsd:choice minOccurs="1" maxOccurs="3">
+						<xsd:element ref="YourTradeId"/>						
+						<xsd:element ref="ContraTradeId"/>
+					</xsd:choice>
+				</xsd:choice>
+				<xsd:element ref="party" minOccurs="1" maxOccurs="2"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- The sellerPartyReference and buyerPartyReference elements are for supporting Terminate.
+	Terminate is deprecated as of version 3.0 Replaced with Termination -->
+	<xsd:element name="sellerPartyReference">
+		<xsd:complexType>
+			<xsd:attribute name="href" type="xsd:IDREF" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="buyerPartyReference">
+		<xsd:complexType>
+			<xsd:attribute name="href" type="xsd:IDREF" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="DkDetail">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="DkReason"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>	
+	<!-- End Level 3+ ============================================-->
+	<!-- Begin simple element name type declarations ======================= -->
+	<xsd:element name="Activity" type="ActivityDataType"/>	
+	<xsd:element name="ContraTradeId" type="TradeIdDataType"/>	
+	<xsd:element name="ErrorDetail" type="FreeFormDataType"/>
+	<xsd:element name="ErrorMsgName" type="AlphaNumeric74DataType"/>
+	<xsd:element name="ErrorString" type="xsd:string"/>
+	<xsd:element name="ErrorLocation" type="XPathDataType"/>
+	<xsd:element name="ErrorCode" type="ErrorCodeDataType"/>	
+	<xsd:element name="party" type="fpml:Party"/>
+	<xsd:element name="partyTradeIdentifier" type="fpml:PartyTradeIdentifier"/>
+	<xsd:element name="Status" type="StatusDataType"/>
+	<xsd:element name="Submitter" type="TradeIdDataType"/>
+	<xsd:element name="YourTradeId" type="TradeIdDataType"/>
+	<xsd:element name="DkReason" type="xsd:string"/>	
+	<xsd:element name="payment" type="fpml:Payment"/>
+	<xsd:element name="trade" type="fpml:Trade"/>
+	<xsd:element name="amount" type="xsd:decimal"/>
+	<xsd:element name="asOfDate" type="xsd:date"/>	
+	<xsd:element name="productStub" type="ProductStub" substitutionGroup="fpml:product"/>	
+	<xsd:element name="OriginalAdjustedPaymentDate" type="xsd:date"/>
+	<xsd:element name="OriginalUnadjustedPaymentDate" type="xsd:date"/>
+	<xsd:element name="PaymentTransType" type="rm:TransTypeDataType"/>
+	<xsd:element name="CurrentRecord" type="xsd:positiveInteger"/>
+	<xsd:element name="TotalRecords" type="xsd:positiveInteger"/>
+	<xsd:element name="ReasonDate" type="xsd:date"/>
+	<xsd:element name="NewTradeId" type="TradeIdDataType"/>
+	<xsd:element name="TradeLinkage" type="TradeLinkageType"/>
+	<xsd:element name="TradeLinkageType" type="xsd:string"/>
+	<xsd:element name="TradeLinkageSource" type="xsd:string"/>
+	<xsd:element name="BestMatch" type="BestMatchType"/>
+	<xsd:element name="BestMatchPercent" type="xsd:integer"/>	
+	<xsd:element name="DealInfo" type="DealInfoType"/>
+	<xsd:element name="TradeDetails" type="products:EquityTrade"/>
+	<xsd:element name="Substantiation" type="products:EquityTrade"/>
+	<xsd:element name="UnitsAtExpiration" type="xsd:integer"/>		
+	<xsd:element name="LinkStatus" type="LinkStatusDataType"/>
+	<xsd:element name="CounterpartySubmissionStatus" type="CounterpartySubmissionStatusDataType"/>
+	<xsd:element name="NetGroup" type="NetGroupType"/>
+	<xsd:element name="PaymentAmount" type="fpml:PaymentMatching"/>
+	<xsd:element name="MatchStatus" type="NetGroupMatchStatus"/>
+	<xsd:element name="PaymentGroup" type="PaymentGroupType"/>
+	<xsd:element name="PartyGroup" type="PartyGroupType"/>
+	<xsd:element name="CounterpartyGroup" type="CounterpartyGroupType"/>
+	<xsd:element name="partyReference" type="fpml:PartyReference"/>
+	<xsd:element name="CommentsHistory" type="CommentsHistoryType"/>
+	<xsd:element name="ChatInfo" type="ChatInfoType"/>	
+	<xsd:element name="SubmitterPartyReference" type="fpml:PartyReference"/>
+	<xsd:element name="SubmitterName" type="xsd:string"/>			
+	<xsd:element name="SubmissionTime" type="xsd:dateTime"/>
+	<xsd:element name="Priority" type="PriorityType"/>
+	<xsd:element name="Comment" type="xsd:string"/>
+	<xsd:element name="URL" type="xsd:anyURI"/>
+	<xsd:element name="Internal" type="xsd:boolean"/>
+	<xsd:element name="ECFMProcessedTime" type="xsd:dateTime"/>
+	<xsd:element name="CounterpartyReadTime" type="xsd:dateTime"/>
+	<xsd:element name="NetDetails" type="RecordDetailsType"/>
+	<xsd:element name="RecordType" type="RecordTypeEnum"/>
+	<xsd:element name="RecordQualifier" type="RecordQualifierEnum"/>
+	<xsd:element name="RecordQualifierReason" type="RecordQualifierReasonEnum"/>
+	<xsd:element name="RecordSequence" type="RecordSequenceType"/>	
+	<xsd:element name="comment" type="WorkflowFieldType"/>
+	<xsd:element name="deskId" type="WorkflowFieldType"/>
+	<xsd:element name="superId" type="WorkflowFieldType"/>
+	<xsd:element name="designatedParty" type="WorkflowFieldType"/>
+	<xsd:element name="eTradeId" type="WorkflowFieldType"/>
+	<xsd:element name="brokerName" type="WorkflowFieldType"/>	
+	<xsd:element name="WorkflowTransType" type="rm:TransTypeDataType"/>
+	<xsd:element name="PartyWorkflowFields" type="WorkflowDataType"/>
+	<xsd:element name="ContraWorkflowFields" type="ContraWorkflowDataType"/>
+	<xsd:element name="Differences" type="DifferencesType"/>
+	<xsd:element name="TradeDetailsDifferences" type="TradeDetailsDifferencesType"/>
+	<xsd:element name="SubstantiationDifferences" type="SubstantiationDifferencesType"/>	
+	<!-- End simple element name type declarations ===================== -->
+	<!-- Begin custom element datatype declarations ==================== -->
+	<xsd:simpleType name="AlphaNumeric10DataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{1,10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ActivityDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Cancel"/>
+			<xsd:enumeration value="Disable"/>
+			<xsd:enumeration value="Modify"/>
+			<xsd:enumeration value="New"/>
+			<xsd:enumeration value="Inquiry"/>
+			<xsd:enumeration value="Reversal"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaNumeric255DataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9A-Za-z*@# .,'/~\-]{0,255}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ChoiceYorNDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Y"/>
+			<xsd:enumeration value="N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaNumeric74DataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="74"></xsd:maxLength>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ErrorCodeDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="E[A-Z1-9][0-9]{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>			
+	<xsd:complexType name="FreeFormDataType" mixed="true">
+		<xsd:sequence>
+			<xsd:any namespace="##any" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+		</xsd:sequence>
+		<xsd:anyAttribute namespace="##any" processContents="lax"/>
+	</xsd:complexType>
+	<xsd:simpleType name="StatusDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Submit"/>
+			<xsd:enumeration value="Alleged"/>
+			<xsd:enumeration value="Unmatched"/>
+			<xsd:enumeration value="Matched"/>
+			<xsd:enumeration value="DK"/>
+			<xsd:enumeration value="DKAcknowledged"/>
+			<xsd:enumeration value="Error"/>
+			<xsd:enumeration value="Confirmed"/>
+			<xsd:enumeration value="Cancel-Alleged"/>
+			<xsd:enumeration value="OnHold"/>
+			<xsd:enumeration value="Locked"/>	
+			<xsd:enumeration value="CP-DK"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="TradeIdDataType" mixed="false">
+		<xsd:sequence>
+			<xsd:element ref="partyTradeIdentifier" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XPathDataType" mixed="true">
+		<xsd:sequence>
+			<xsd:any namespace="##any" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+		</xsd:sequence>
+		<xsd:anyAttribute namespace="##any" processContents="lax"/>
+	</xsd:complexType>
+	<xsd:simpleType name="ApplicableOrNot">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Applicable"/>
+			<xsd:enumeration value="NotApplicable"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ProductStub is never to be used in actual messages. It is for illustration purposes 
+		only, to illustrate the messaging architecture without tying the samples to a specific product.-->
+	<xsd:complexType name="ProductStub">
+		<xsd:complexContent>
+			<xsd:extension base="fpml:Product"> </xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	<xsd:complexType name="DealInfoType">
+		<xsd:sequence>
+				<xsd:element ref="TradeDetails" minOccurs="0" maxOccurs="2"/>
+				<xsd:element ref="Substantiation" minOccurs="0" maxOccurs="2"/>
+				<xsd:element ref="Differences" minOccurs="0"/>
+				<!-- <xsd:element ref="OtherProduct" minOccurs="0" maxOccurs="1"/> -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- <xsd:complexType name="OtherProductType">
+		<xsd:sequence>
+			<xsd:element ref="TradeHeader"/>
+			<xsd:element ref="TerminationDate"/>
+			<xsd:element ref="Underlyer" minOccurs="0"/>
+			<xsd:element ref="NumberOfOptions" minOccurs="0"/>			
+		</xsd:sequence>
+	</xsd:complexType> -->
+	<xsd:complexType name="TradeLinkageType">
+		<xsd:sequence>
+			<xsd:element ref="TradeLinkageType" minOccurs="0"/>
+			<xsd:element ref="TradeLinkageSource" minOccurs="0"/>
+			<xsd:element ref="partyTradeIdentifier"/>
+		</xsd:sequence>
+		<xsd:attribute name="rank" type="xsd:positiveInteger" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="BestMatchType">
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:element ref="BestMatchPercent"/>
+			<xsd:element ref="TradeLinkage" minOccurs="0" maxOccurs="unbounded"/>
+			<!--  If tradeLinakge element is decised to be part of Best Match then partyTradeIdentifier must be removed -->
+			<!--<xsd:element name="partyTradeIdentifier" type="fpml:PartyTradeIdentifier"/> -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LinkStatusDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Linked"/>
+			<xsd:enumeration value="Unlinked"/>
+			<xsd:enumeration value="NewLink"/>
+			<xsd:enumeration value="Relinked"/>
+			<xsd:enumeration value="RelinkedSameParty"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CounterpartySubmissionStatusDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Mismatched"/>
+			<xsd:enumeration value="MissingYours"/>
+			<xsd:enumeration value="NotLinked"/>
+			<xsd:enumeration value="Matched"/>
+			<xsd:enumeration value="NoCptySubmission"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NetGroupMatchStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Matched"/>
+			<xsd:enumeration value="Mismatched"/>
+			<xsd:enumeration value="Alleged"/>
+			<xsd:enumeration value="Unmatched"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NetGroupType">
+		<xsd:sequence>			
+			<xsd:element ref="PaymentGroup" maxOccurs="unbounded"/>
+		</xsd:sequence>		
+	</xsd:complexType>
+	<xsd:complexType name="PaymentGroupType">
+		<xsd:sequence>
+			<xsd:element ref="PaymentAmount"/>
+			<xsd:element ref="MatchStatus"/>
+			<xsd:element ref="PartyGroup" minOccurs="0"/>
+			<xsd:element ref="CounterpartyGroup" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="PartyGroupType">		
+		<xsd:sequence>
+			<xsd:element ref="partyReference"/>
+			<xsd:element ref="PaymentAmount" maxOccurs="unbounded"/>
+		</xsd:sequence>		
+	</xsd:complexType>
+	<xsd:complexType name="CounterpartyGroupType">		
+		<xsd:sequence>
+			<xsd:element ref="partyReference"/>
+			<xsd:element ref="PaymentAmount" maxOccurs="unbounded"/>
+		</xsd:sequence>		
+	</xsd:complexType>
+	<xsd:complexType name="CommentsHistoryType">		
+		<xsd:sequence>
+			<xsd:element ref="ChatInfo" minOccurs="0" maxOccurs="unbounded"/>						
+		</xsd:sequence>	
+	</xsd:complexType>
+	<xsd:complexType name="ChatInfoType">		
+		<xsd:sequence>
+			<xsd:element ref="SubmitterPartyReference"/>
+			<xsd:element ref="SubmitterName"/>			
+			<xsd:element ref="SubmissionTime"/>
+			<xsd:element ref="Priority"/>
+			<xsd:element ref="Comment"/>
+			<xsd:element ref="URL"/>	
+			<xsd:element ref="Internal"/>	
+			<xsd:element ref="ECFMProcessedTime" minOccurs="0"/>
+			<xsd:element ref="CounterpartyReadTime" minOccurs="0"/>
+		</xsd:sequence>		
+	</xsd:complexType>	
+	<xsd:simpleType name="PriorityType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="High"/>
+			<xsd:enumeration value="Medium"/>
+			<xsd:enumeration value="Low"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="RecordDetailsType">
+		<xsd:sequence>
+			<xsd:element ref="RecordType"/>
+			<xsd:element ref="RecordQualifier"/>
+			<xsd:element ref="RecordQualifierReason" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="RecordSequence" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="RecordTypeEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Gross"/>
+			<xsd:enumeration value="Net"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RecordQualifierEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="S-5"/>
+			<xsd:enumeration value="S-4"/>
+			<xsd:enumeration value="S-3"/>
+			<xsd:enumeration value="S-2"/>
+			<xsd:enumeration value="S-1"/>
+			<xsd:enumeration value="IPIS"/>
+			<xsd:enumeration value="RPIS"/>
+			<xsd:enumeration value="OutsideTIW"/>
+			<xsd:enumeration value="Settled"/>
+			<xsd:enumeration value="ProposedReject"/>
+			<xsd:enumeration value="FailedSettlement"/>
+			<xsd:enumeration value="Final"/>
+			<xsd:enumeration value="Net"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RecordQualifierReasonEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="DTCCRescinded"/>
+			<xsd:enumeration value="CLSRescinded"/>
+			<xsd:enumeration value="Rejected"/>
+			<xsd:enumeration value="Invalid"/>
+			<xsd:enumeration value="Suspended"/>
+			<xsd:enumeration value="SuspendedRegulatory"/>
+			<xsd:enumeration value="SMNotAuthorized"/>
+			<xsd:enumeration value="CLSAmended"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="RecordSequenceType">
+		<xsd:sequence>
+			<xsd:element ref="CurrentRecord"/>
+			<xsd:element ref="TotalRecords"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WorkflowDataType">
+		<xsd:sequence>		
+			<xsd:element ref="comment" minOccurs="0" maxOccurs="1"/>				
+			<xsd:element ref="superId" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="deskId" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="eTradeId" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="designatedParty" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="brokerName" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>		
+	</xsd:complexType>
+	<xsd:complexType name="ContraWorkflowDataType">
+		<xsd:complexContent>
+			<xsd:restriction base="WorkflowDataType">
+				<xsd:sequence>					
+					<xsd:element ref="superId" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="deskId" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="eTradeId" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="designatedParty" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="brokerName" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>				
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WorkflowFieldType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="TradeDetailsDifferencesType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Matching"/>
+			<xsd:enumeration value="Different"/>
+			<xsd:enumeration value="NotApplicable"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SubstantiationDifferencesType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Matching"/>
+			<xsd:enumeration value="Different"/>
+			<xsd:enumeration value="NotApplicable"/>
+			<xsd:enumeration value="YoursOnly"/>
+			<xsd:enumeration value="CptyOnly"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="DifferencesType">		
+			<xsd:sequence>
+				<xsd:element ref="TradeDetailsDifferences"/>
+				<xsd:element ref="SubstantiationDifferences"/>
+			</xsd:sequence>		
+	</xsd:complexType>
+</xsd:schema>

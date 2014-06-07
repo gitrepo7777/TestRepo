@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/ibm/was/wssample/sei/echo/EchoSOAPImpl.java=UTF-8
+encoding//src/com/ibm/was/wssample/sei/echo/EchoSOAPSkeleton.java=UTF-8
+encoding//src/com/ibm/was/wssample/sei/echo/EchoSOAPStub.java=UTF-8
+encoding//src/com/ibm/was/wssample/sei/echo/EchoService.java=UTF-8
+encoding//src/com/ibm/was/wssample/sei/echo/EchoServiceLocator.java=UTF-8
+encoding//src/com/ibm/was/wssample/sei/echo/EchoServicePortType.java=UTF-8
+encoding//src/com/ibm/was/wssample/sei/echo/EchoStringInput.java=UTF-8
+encoding//src/com/ibm/was/wssample/sei/echo/EchoStringResponse.java=UTF-8

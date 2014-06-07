@@ -1,0 +1,133 @@
+update C:\Oracle\Middleware\user_projects\domains\base_domain\bin\setDomainEnv.cmd
+to
+set CLASSPATH=%CLASSPATH%;c:/jars/commons-logging-1.1.1.jar;c:/jars/log4j-1.2.16.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.aop-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.asm-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.aspects-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.beans-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.context.support-3.1.1.RELEASE;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.context-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.core-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.expression-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.instrument.tomcat-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.instrument-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.jdbc-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.jms-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.orm-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.oxm-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.test-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.transaction-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web.portlet-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web.servlet-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web.struts-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web-3.1.1.RELEASE.jar;
+
+
+
+add Spring library to java project
+
+> <WebLogicServer> <BEA-000365> <Server state changed to RUNNING.> 
+<Nov 6, 2012 6:32:05 PM EST> <Notice> <WebLogicServer> <BEA-000360> <The server started in RUNNING mode.> 
+<Nov 6, 2012 6:32:25 PM EST> <Warning> <HTTP> <BEA-101162> <User defined listener org.springframework.web.context.ContextLoaderListener failed: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'personService': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in ServletContext resource [/WEB-INF/applicationContext.xml]: Cannot create inner bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#2ef615ff' of type [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] while setting bean property 'jpaVendorAdapter'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#2ef615ff' defined in ServletContext resource [/WEB-INF/applicationContext.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: org/hibernate/ejb/HibernatePersistence.
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'personService': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in ServletContext resource [/WEB-INF/applicationContext.xml]: Cannot create inner bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#2ef615ff' of type [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] while setting bean property 'jpaVendorAdapter'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#2ef615ff' defined in ServletContext resource [/WEB-INF/applicationContext.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: org/hibernate/ejb/HibernatePersistence
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:342)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	Truncated. see log file for complete stacktrace
+Caused By: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in ServletContext resource [/WEB-INF/applicationContext.xml]: Cannot create inner bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#2ef615ff' of type [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] while setting bean property 'jpaVendorAdapter'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#2ef615ff' defined in ServletContext resource [/WEB-INF/applicationContext.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: org/hibernate/ejb/HibernatePersistence
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:281)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:120)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1360)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1118)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	Truncated. see log file for complete stacktrace
+Caused By: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#2ef615ff' defined in ServletContext resource [/WEB-INF/applicationContext.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: org/hibernate/ejb/HibernatePersistence
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:997)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:943)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:270)
+	Truncated. see log file for complete stacktrace
+Caused By: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: org/hibernate/ejb/HibernatePersistence
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:162)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:76)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:990)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:943)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:485)
+	Truncated. see log file for complete stacktrace
+Caused By: java.lang.NoClassDefFoundError: org/hibernate/ejb/HibernatePersistence
+	at org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter.<init>(HibernateJpaVendorAdapter.java:57)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	Truncated. see log file for complete stacktrace
+> 
+<Nov 6, 2012 6:32:25 PM EST> <Error> <HTTP> <BEA-101165> <Could not load user defined filter in web.xml: org.apache.struts2.dispatcher.FilterDispatcher.
+Unable to load configuration. - [unknown location]
+	at org.apache.struts2.dispatcher.Dispatcher.init(Dispatcher.java:428)
+	at org.apache.struts2.dispatcher.FilterDispatcher.init(FilterDispatcher.java:190)
+	at weblogic.servlet.internal.FilterManager$FilterInitAction.run(FilterManager.java:576)
+	at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:321)
+	at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:120)
+	Truncated. see log file for complete stacktrace
+Caused By: Unable to load configuration. - [unknown location]
+	at com.opensymphony.xwork2.config.ConfigurationManager.getConfiguration(ConfigurationManager.java:58)
+	at org.apache.struts2.dispatcher.Dispatcher.init_PreloadConfiguration(Dispatcher.java:371)
+	at org.apache.struts2.dispatcher.Dispatcher.init(Dispatcher.java:415)
+	at org.apache.struts2.dispatcher.FilterDispatcher.init(FilterDispatcher.java:190)
+	at weblogic.servlet.internal.FilterManager$FilterInitAction.run(FilterManager.java:576)
+	Truncated. see log file for complete stacktrace
+Caused By: Cannot locate the chosen ObjectFactory implementation: spring - [unknown location]
+	at org.apache.struts2.config.BeanSelectionProvider.alias(BeanSelectionProvider.java:293)
+	at org.apache.struts2.config.BeanSelectionProvider.alias(BeanSelectionProvider.java:264)
+	at org.apache.struts2.config.BeanSelectionProvider.register(BeanSelectionProvider.java:202)
+	at com.opensymphony.xwork2.config.impl.DefaultConfiguration.reloadContainer(DefaultConfiguration.java:169)
+	at com.opensymphony.xwork2.config.ConfigurationManager.getConfiguration(ConfigurationManager.java:55)
+	Truncated. see log file for complete stacktrace
+> 
+<Nov 6, 2012 6:32:33 PM EST> <Alert> <WebLogicServer> <BEA-000396> <Server shutdown has been requested by weblogic.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to FORCE_SUSPENDING.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to ADMIN.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <WebLogicServer> <BEA-000365> <Server state changed to FORCE_SHUTTING_DOWN.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[3]", listening on fe80:0:0:0:70bc:1346:adf:9885:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[6]", listening on fe80:0:0:0:2d7e:77de:514f:4c67:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[1]", listening on 192.168.0.103:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[5]", listening on fe80:0:0:0:0:100:7f:fffe:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[7]", listening on fe80:0:0:0:857f:278a:a883:1486:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[2]", listening on fe80:0:0:0:0:5efe:c0a8:67:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default", listening on 192.168.87.1:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[4]", listening on fe80:0:0:0:3873:7db9:c704:4d8a:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[8]", listening on 127.0.0.1:7001, was shut down.> 
+<Nov 6, 2012 6:32:33 PM EST> <Notice> <Server> <BEA-002607> <Channel "Default[9]", listening on 0:0:0:0:0:0:0:1:7001, was shut down.> 
+
+
+NOTE: The server should not have Struts in its classpath. The correct way to load Struts is to put them in the WEB-INF/lib directory and let the application classloader discover them. If the same classes are in the server classpath the application will not load correctly.
+
+
+set CLASSPATH=%CLASSPATH%;c:/jars/commons-logging-1.1.1.jar;c:/jars/log4j-1.2.16.jar;c:/jars/aopalliance-1.0.jar;c:/jars/ognl-2.7.jar;C:/hibernate4.1.0/lib/jpa/hibernate-entitymanager-4.1.0.Final.jar;C:/hibernate4.1.0/lib/required/hibernate-commons-annotations-4.0.1.Final.jar;C:/hibernate4.1.0/lib/required/hibernate-core-4.1.0.Final.jar;C:/jboss-as-7.1.0.Final/modules/org/jboss/logging/main/jboss-logging-3.1.0.GA.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.aop-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.asm-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.aspects-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.beans-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.context.support-3.1.1.RELEASE;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.context-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.core-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.expression-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.instrument.tomcat-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.instrument-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.jdbc-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.jms-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.orm-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.oxm-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.test-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.transaction-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web.portlet-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web.servlet-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web.struts-3.1.1.RELEASE.jar;C:/spring-framework-3.1.1.RELEASE/dist/org.springframework.web-3.1.1.RELEASE.jar;
+
+
+Question
+
+In Struts2 development, many asked why some declared filter class as “FilterDispatcher“; others declared “StrutsPrepareAndExecuteFilter“? But both are working perfectly and what’s the different?
+
+1. FilterDispatcher example
+
+...
+<filter>
+   <filter-name>struts2</filter-name>
+   <filter-class>
+     org.apache.struts2.dispatcher.FilterDispatcher
+   </filter-class>
+</filter>
+ 
+<filter-mapping>
+   <filter-name>struts2</filter-name>
+   <url-pattern>/*</url-pattern>
+</filter-mapping>
+...
+
+2. StrutsPrepareAndExecuteFilter example
+
+...
+<filter>
+  <filter-name>struts2</filter-name>
+  <filter-class>
+        org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+  </filter-class>
+</filter>
+ 
+<filter-mapping>
+   <filter-name>struts2</filter-name>
+   <url-pattern>/*</url-pattern>
+</filter-mapping>
+...
+
+Answer
+
+The FilterDispatcher (org.apache.struts2.dispatcher.FilterDispatcher) is used in the early Struts2 development, and it’s deprecated since Struts 2.1.3.
+
+If you are using Struts version >= 2.1.3, it’s always recommended to upgrade the new filter class – StrutsPrepareAndExecuteFilter (org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter).

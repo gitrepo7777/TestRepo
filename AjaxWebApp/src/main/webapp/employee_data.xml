@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<employees>
+	<employee position="manager">
+		<name>
+			<first>Meenakshi</first>
+			<last>Das</last>
+		</name>
+		<age>31</age>
+	</employee>
+	<employee position="developer">
+		<name>
+			<first>Dia</first>
+			<last>Agarwal</last>
+		</name>
+		<age>25</age>
+	</employee>
+	<employee position="developer">
+		<name>
+			<first>Natalie</first>
+			<last>Abraham</last>
+		</name>
+		<age>23</age>
+	</employee>
+	<employee position="engineer">
+		<name>
+			<first>Kim</first>
+			<last>Gentile</last>
+		</name>
+		<age>22</age>
+	</employee>
+	<employee position="accountant">
+		<name>
+			<first>Ankita</first>
+			<last>Adhikary</last>
+		</name>
+		<age>25</age>
+	</employee>
+	<employee position="developer">
+		<name>
+			<first>Priya</first>
+			<last>Kapoor</last>
+		</name>
+		<age>32</age>
+	</employee>
+</employees>
+

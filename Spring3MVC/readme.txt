@@ -1,0 +1,1 @@
+http://localhost:7001/Spring3MVC/rest/coffee/ARABICA

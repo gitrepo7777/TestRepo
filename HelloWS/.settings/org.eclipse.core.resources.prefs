@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/org/example/duke/AddNumbersBindingImpl.java=UTF-8
+encoding//src/org/example/duke/AddNumbersBindingSkeleton.java=UTF-8
+encoding//src/org/example/duke/AddNumbersBindingStub.java=UTF-8
+encoding//src/org/example/duke/AddNumbersFault.java=UTF-8
+encoding//src/org/example/duke/AddNumbersPortType.java=UTF-8
+encoding//src/org/example/duke/AddNumbersService.java=UTF-8
+encoding//src/org/example/duke/AddNumbersServiceLocator.java=UTF-8

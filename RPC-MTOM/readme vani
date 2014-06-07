@@ -1,0 +1,4 @@
+codes enable MTOM in client
+BindingProvider bp = (BindingProvider) imageServer;
+SOAPBinding binding = (SOAPBinding) bp.getBinding();
+binding.setMTOMEnabled(true);

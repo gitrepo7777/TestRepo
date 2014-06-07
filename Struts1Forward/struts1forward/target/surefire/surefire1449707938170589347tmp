@@ -1,0 +1,5 @@
+#surefire
+#Fri Nov 09 10:27:00 EST 2012
+user.dir=C\:\\TestWorkspace\\Struts1Forward\\struts1forward
+localRepository=C\:\\Users\\Y\\.m2\\repository
+basedir=C\:\\TestWorkspace\\Struts1Forward\\struts1forward

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<xsd:schema xmlns:domain="http://mpilone.org/weather/domain"
+	xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://mpilone.org/weather"
+  xmlns:tns="http://mpilone.org/weather">
+  
+	<s:import schemaLocation="Domain.xsd"
+		namespace="http://mpilone.org/weather/domain" />
+    
+	<s:element 
+		name="ConvertTemperature">
+		<s:complexType>
+			<s:sequence>
+				<s:element name="temperature" type="s:float">
+					<s:annotation>
+						<s:documentation>
+						The temperature to convert.
+						</s:documentation>
+					</s:annotation>
+				</s:element>
+        <s:element name="targetScale" type="s:string">
+          
+                    <xsd:annotation>
+                    	<xsd:documentation>The target scale to convert to.</xsd:documentation>
+                    </xsd:annotation>
+        </s:element>
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element 
+		name="ConvertTemperatureResponse">
+		<s:complexType>
+      <s:sequence>
+        <s:element name="result" type="s:float">
+        	<xsd:annotation>
+        		<xsd:documentation>The new temperature value.</xsd:documentation>
+        	</xsd:annotation></s:element>
+      </s:sequence>
+    </s:complexType>
+	</s:element>
+	
+
+	<xsd:element name="GetWeatherReport">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="zipcode" type="s:string">
+	      	<xsd:annotation>
+	      		<xsd:documentation>The zip code for which to get the weather report.</xsd:documentation>
+	      	</xsd:annotation></xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="GetWeatherReportResponse">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="result" type="domain:WeatherReport" minOccurs="0">
+	      	<xsd:annotation>
+	      		<xsd:documentation>The weather report or no value if there was no report for the requested zipcode.</xsd:documentation>
+	      	</xsd:annotation></xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="SaveWeatherUpdate">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="weatherInfo" type="domain:WeatherUpdate">
+	      	<xsd:annotation>
+	      		<xsd:documentation>The weather information to save.</xsd:documentation>
+	      	</xsd:annotation></xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="SaveWeatherUpdateResponse">
+	  <xsd:complexType></xsd:complexType>
+	</xsd:element>
+</xsd:schema>

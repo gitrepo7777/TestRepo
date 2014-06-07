@@ -1,0 +1,182 @@
+<?xml version ="1.0" encoding = "UTF-8"?>
+<xsd:schema targetNamespace="OTC_RM_EPMS_1-0" xmlns="OTC_RM_EPMS_1-0" xmlns:rm="OTC_Matching_EPMS_1-0" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2009/FpML-4-7
+	/xmls/OTC/fpml-main-4-7.xsd" version="1-0_2010-11-13">
+	<xsd:import namespace="http://www.fpml.org/2009/FpML-4-7" schemaLocation="/xmls/OTC/fpml-main-4-7.xsd" />
+	<!-- CONFIDENTIAL AND PROPRIETARY
+	   Copyright (c) 2002-2009 The Depository Trust & Clearing Corporation.  
+	   All rights reserved.
+	   By receipt and review of these materials, the recipient acknowledges and agrees that these materials are and shall remain, and be treated and maintained by any recipient, as confidential and as such may not be disclosed. Further, the recipient agrees that all copyright and other intellectual property rights in or relating to these materials are and shall remain the property of DTCC.
+	-->
+	<!-- Begin Level 1 =============================================-->
+	<xsd:element name="OTC_RM">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="Manifest"/>
+				<xsd:element ref="Delivery"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- End  Level 1 ===============================================-->
+	<!-- Begin Level 2 ==============================================-->
+	<xsd:element name="Manifest">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:element ref="TradeMsg"/>
+					<xsd:element maxOccurs="unbounded" minOccurs="1" ref="ErrorMsgName"/>
+				</xsd:choice>
+				<xsd:element maxOccurs="1" minOccurs="0" ref="MsgId"/>
+				<xsd:element maxOccurs="1" minOccurs="0" ref="UserId"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- ............................................................. -->
+	<xsd:element name="Delivery">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="RouteInfo"/>
+				<xsd:element ref="RouteHist"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- End  Level 2 ===============================================-->
+	<!-- ............................................................. -->
+	<xsd:element name="TradeMsg">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="Activity"/>
+				<xsd:element ref="Status"/>				
+				<xsd:element ref="TransType"/>
+				<xsd:element ref="AssetType"/>
+				<xsd:element ref="ProductType"/>
+				<xsd:choice>
+					<xsd:sequence>
+						<xsd:element ref="Submitter"/>						
+						<xsd:element maxOccurs="3" minOccurs="0" ref="OtherPartyTradeId"/>
+					</xsd:sequence>
+					<xsd:choice maxOccurs="4" minOccurs="1">
+						<xsd:element maxOccurs="1" minOccurs="0" ref="YourTradeId"/>						
+						<xsd:element maxOccurs="1" minOccurs="0" ref="ContraTradeId"/>						
+						<xsd:element maxOccurs="3" minOccurs="0" ref="OtherPartyTradeId"/>
+					</xsd:choice>
+				</xsd:choice>
+				<xsd:element maxOccurs="1" minOccurs="0" ref="BrokerTradeVersion"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- End Manifest Level 3 ==============================================-->
+	<!-- Begin Delivery  ============================================-->
+	<xsd:element name="RouteInfo">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="From"/>
+				<xsd:element ref="To"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- ............................................................. -->
+	<xsd:element name="RouteHist">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element maxOccurs="2" minOccurs="1" ref="Route"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- ............................................................. -->
+	<xsd:element name="Route">
+		<xsd:complexType mixed="false">
+			<xsd:sequence>
+				<xsd:element ref="RouteAddress"/>
+				<xsd:element ref="ReceiveTime"/>
+				<xsd:element ref="ReleaseTime"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- End Delivery Level 3+ ============================================-->
+	<!-- Begin simple element name type declarations ======================= -->
+	<xsd:element name="Activity" type="ActivityDataType"/>
+	<xsd:element name="ContraTradeId" type="TradeIdDataType"/>
+	<xsd:element name="ErrorMsgName" type="AlphaNumeric74DataType"/>
+	<xsd:element name="From" type="xsd:string"/>
+	<xsd:element name="MsgId" type="MsgIdDataType"/>
+	<xsd:element name="TransType" type="TransTypeDataType"/>
+	<xsd:element name="partyTradeIdentifier" type="fpml:PartyTradeIdentifier"/>
+	<xsd:element name="ProductType" type="ProductTypeDataType"/>
+	<xsd:element name="Receiver" type="xsd:string"/>
+	<xsd:element name="ReceiveTime" type="xsd:dateTime"/>
+	<xsd:element name="ReleaseTime" type="xsd:dateTime"/>
+	<xsd:element name="RouteAddress" type="xsd:anyURI"/>
+	<xsd:element name="Sender" type="xsd:string"/>
+	<xsd:element name="Submitter" type="TradeIdDataType"/>
+	<xsd:element name="Status" type="StatusDataType"/>
+	<xsd:element name="OldTradeId" type="TradeIdDataType"/>
+	<xsd:element name="To" type="xsd:string"/>
+	<xsd:element name="YourTradeId" type="TradeIdDataType"/>
+	<xsd:element name="BrokerTradeId" type="TradeIdDataType"/>
+	<xsd:element name="OtherPartyTradeId" type="TradeIdDataType"/>
+	<xsd:element name="BrokerTradeVersion" type="xsd:string"/>	
+	<xsd:element name="UserId" type="xsd:string"/>
+	<xsd:element name="AssetType" type="AssetTypeDataType"/>
+	<!-- End simple element name type declarations ===================== -->
+	<!-- Begin custom element datatype declarations ==================== -->
+	<xsd:simpleType name="ActivityDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Cancel"/>
+			<xsd:enumeration value="Disable"/>
+			<xsd:enumeration value="Modify"/>
+			<xsd:enumeration value="New"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaNumeric74DataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="74"></xsd:maxLength>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MsgIdDataType">
+		<xsd:restriction base="xsd:string"> </xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ProductTypeDataType">
+		<xsd:restriction base="xsd:string">			
+			<xsd:enumeration value="EquitySwap"/>
+			<xsd:enumeration value="VarianceSwap"/>			
+			<xsd:enumeration value="Option"/>
+			<xsd:enumeration value="DividendSwap"/>
+			<xsd:enumeration value="Other"/>
+			<xsd:enumeration value="Net"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StatusDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Submit"/>
+			<xsd:enumeration value="Alleged"/>
+			<xsd:enumeration value="Unmatched"/>					
+			<xsd:enumeration value="Matched"/>
+			<xsd:enumeration value="DK"/>
+			<xsd:enumeration value="DKAcknowledged"/>
+			<xsd:enumeration value="Error"/>
+			<xsd:enumeration value ="Confirmed"/>
+			<xsd:enumeration value ="Cancel-Alleged"/>
+			<xsd:enumeration value ="OnHold"/>
+			<xsd:enumeration value ="Locked"/>
+			<xsd:enumeration value="CP-DK"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	<xsd:complexType mixed="false" name="TradeIdDataType">
+		<xsd:sequence>
+			<xsd:element maxOccurs="3" ref="partyTradeIdentifier"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="TransTypeDataType">
+		<xsd:restriction base="xsd:string">						
+			<xsd:enumeration value="Cashflow"/>
+			<xsd:enumeration value="CashflowComments"/>
+			<xsd:enumeration value="CashflowNet"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	<xsd:simpleType name="AssetTypeDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Equity"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

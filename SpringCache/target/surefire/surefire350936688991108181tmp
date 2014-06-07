@@ -1,0 +1,5 @@
+#surefire
+#Mon Sep 23 14:01:14 EDT 2013
+user.dir=C\:\\MyWorkspaces\\TestWorkspace\\SpringCache
+localRepository=C\:\\Users\\Y\\.m2\\repository
+basedir=C\:\\MyWorkspaces\\TestWorkspace\\SpringCache

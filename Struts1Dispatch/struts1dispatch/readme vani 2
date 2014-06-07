@@ -1,0 +1,16 @@
+root cause
+
+javax.servlet.ServletException: DispatchMapping[/Submit] does not define a handler property
+	org.apache.struts.actions.DispatchAction.getParameter(DispatchAction.java:326)
+	org.apache.struts.actions.DispatchAction.execute(DispatchAction.java:154)
+	org.apache.struts.chain.commands.servlet.ExecuteAction.execute(ExecuteAction.java:58)
+	org.apache.struts.chain.commands.AbstractExecuteAction.execute(AbstractExecuteAction.java:67)
+	org.apache.struts.chain.commands.ActionCommandBase.execute(ActionCommandBase.java:51)
+	org.apache.commons.chain.impl.ChainBase.execute(ChainBase.java:191)
+	org.apache.commons.chain.generic.LookupCommand.execute(LookupCommand.java:305)
+	org.apache.commons.chain.impl.ChainBase.execute(ChainBase.java:191)
+	org.apache.struts.chain.ComposableRequestProcessor.process(ComposableRequestProcessor.java:283)
+	org.apache.struts.action.ActionServlet.process(ActionServlet.java:1913)
+	org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:462)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:717)

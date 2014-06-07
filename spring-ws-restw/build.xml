@@ -1,0 +1,119 @@
+<project name="spring-ws-rest" default="all">
+
+  <property name="support.home" value="${basedir}/support" />
+  <property name="bin.dir" value="${basedir}/bin" />
+  <property name="gen.dir" value="${basedir}/generated" />
+  <property name="src.dir" value="${basedir}/src" />
+  <property name="dist.dir" value="${basedir}/dist" />
+  <property name="libraries.home" value="${basedir}/lib" />
+
+  <fileset id="deps.libs.packaged" dir="${libraries.home}">
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.beans-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.context-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.context.support-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.asm-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.core-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.expression-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.oxm-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.test-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.web-3.0.0.RC1.jar" />
+    <include name="spring-framework-3.0.0.RC1/dist/org.springframework.web.servlet-3.0.0.RC1.jar" />
+    <include name="spring-ws-1.5.7/lib/java-ee/saaj-api-1.3.jar" />
+    <include name="spring-ws-1.5.7/lib/saaj/saaj-impl-1.3.2.jar" />
+    <include name="spring-ws-1.5.7/dist/spring-ws-1.5.7-all.jar" />
+    <include name="apache-log4j-1.2.15/log4j-1.2.15.jar" />
+    <include name="commons-logging-1.1.1/commons-logging-1.1.1.jar" />
+    <include name="log4j-servlet/dist/log4j-servlet.jar" />
+    <include name="jaxb-ri-2.1.8/lib/jaxb-api.jar" />
+    <include name="jaxb-ri-2.1.8/lib/jaxb-impl.jar" />
+    <include name="jaxb-ri-2.1.8/lib/jaxb-xjc.jar" />
+    <include name="jackson-1.3.1/jackson-core-asl-1.3.1.jar" />
+    <include name="jackson-1.3.1/jackson-mapper-asl-1.3.1.jar" />
+    <include name="jackson-1.3.1/jackson-xc-1.3.1.jar" />
+  </fileset>
+
+  <fileset dir="${libraries.home}" id="deps.libs.jaxb">
+    <include name="jaxb-ri-2.1.8/lib/jaxb-api.jar" />
+    <include name="jaxb-ri-2.1.8/lib/jaxb-impl.jar" />
+    <include name="jaxb-ri-2.1.8/lib/jaxb-xjc.jar" />
+  </fileset>
+
+  <!-- Compile time dependencies that will not be included in the war. -->
+  <fileset id="deps.tools.excluded" dir="${libraries.home}">
+    <include name="apache-tomcat-6.0.20/lib/servlet-api.jar" />
+  </fileset>
+
+  <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+    <classpath>
+      <fileset refid="deps.libs.jaxb" />
+    </classpath>
+  </taskdef>
+
+  <!--
+	Create a classpath from both the libraries and the tools that
+	we depend on. This path will be used for compiling.
+	-->
+  <path id="module.classpath">
+    <pathelement location="${bin.dir}" />
+    <pathelement location="${src.dir}" />
+    <pathelement location="${gen.dir}" />
+
+    <fileset refid="deps.libs.packaged" />
+    <fileset refid="deps.tools.excluded" />
+  </path>
+
+  <target name="all" description="Compiles and packages the WAR.">
+
+    <mkdir dir="${bin.dir}" />
+    <mkdir dir="${dist.dir}" />
+    <mkdir dir="${gen.dir}" />
+
+    <!-- Generate the JAXB OXM classes. -->
+    <xjc destdir="${gen.dir}">
+      <schema dir="${support.home}/bindings">
+        <include name="WeatherServiceMessages.xsd" />
+        <include name="Domain.xsd" />
+      </schema>
+      <binding dir="${support.home}/bindings">
+        <include name="WeatherServiceMessages.jaxb.xml" />
+        <include name="Domain.jaxb.xml" />
+      </binding>
+      <depends dir="${support.home}/bindings" includes="*.xsd" />
+      <produces dir="${gen.dir}/org/mpilone/spring/web/domain" />
+    </xjc>
+
+    <!-- Compile everything. -->
+    <javac destdir="${bin.dir}" debug="true" fork="yes">
+      <classpath refid="module.classpath" />
+      <src>
+        <pathelement location="${src.dir}" />
+        <pathelement location="${gen.dir}" />
+      </src>
+    </javac>
+
+    <!-- Copy all the required libraries. -->
+    <mkdir dir="${dist.dir}/tmp"/>
+    <copy todir="${dist.dir}/tmp" flatten="true">
+      <fileset refid="deps.libs.packaged" />
+    </copy>
+    
+    <!-- Build the WAR -->
+    <war destfile="${dist.dir}/weather.war"
+         webxml="${basedir}/support/web-inf/web.xml">
+      <lib dir="${dist.dir}/tmp" />
+      <webinf dir="${basedir}/support/web-inf" excludes="web.xml" />
+
+      <classes dir="${bin.dir}" />
+      <!--<classes dir="${basedir}/support/resources" />-->
+      
+      <fileset dir="${basedir}/support/pages" />
+    </war>
+  </target>
+
+  <target name="clean" description="Cleans binaries from the project.">
+    <delete dir="${bin.dir}" />
+    <delete dir="${dist.dir}" />
+    <delete dir="${gen.dir}" />
+  </target>
+
+</project>

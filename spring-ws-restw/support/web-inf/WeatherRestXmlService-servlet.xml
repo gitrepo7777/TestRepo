@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+    	http://www.springframework.org/schema/context 
+    	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <!-- Locates all the Controllers based on the annotations. -->
+  <context:component-scan base-package="org.mpilone.spring.web.rest"/>
+  <context:annotation-config/>
+
+  <!--
+    Maps incoming requests to the appropriate controller based on the annotations on
+    the controller methods.
+  -->
+  <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+  <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="messageConverters">
+      <list>
+        <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+          <property name="unmarshaller" ref="restXmlMarshaller"/>
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+ <!--
+    Maps view names to the appropriate view based on the view name and 
+    finds the most compatible view among any matching views based on 
+    the requested content type. It may be desireable to add and configure
+    this resolver if you merge the XML and JSON rest servlets into a single
+    configuration.
+  -->
+  <!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"/> -->
+
+ <!--
+    View for rendering the XML for result objects using JAXB annotations.
+  -->
+  <bean id="restXmlMarshalView" class="org.springframework.web.servlet.view.xml.MarshallingView">
+    <property name="marshaller" ref="restXmlMarshaller"/>
+  </bean>
+
+  <!-- Handles the XML marshalling of all REST specific types. -->
+  <bean id="restXmlMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    <property name="contextPaths">
+      <list>
+        <value>org.mpilone.spring.web.domain</value>
+        <value>org.mpilone.spring.web.domain.messages</value>
+      </list>
+    </property>
+  </bean>
+</beans>

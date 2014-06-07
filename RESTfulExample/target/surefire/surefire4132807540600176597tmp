@@ -1,0 +1,5 @@
+#surefire
+#Thu Oct 03 06:10:03 EDT 2013
+user.dir=C\:\\MyWorkspaces\\TestWorkspace\\RESTfulExample
+localRepository=C\:\\Users\\Y\\.m2\\repository
+basedir=C\:\\MyWorkspaces\\TestWorkspace\\RESTfulExample

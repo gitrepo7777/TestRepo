@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+    	http://www.springframework.org/schema/context 
+    	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <!-- Locates all the Endpoints based on the annotations. -->
+  <context:component-scan base-package="org.mpilone.spring.web.soap"/>
+  <context:annotation-config/>
+
+  <!-- Handles marshalling and unmarshalling incoming requests using the JAXB. -->
+  <bean
+    class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+    <constructor-arg ref="marshaller" />
+  </bean>
+  
+  <!-- Locates the proper endpoint method based on the SOAP message payload. -->
+  <bean
+    class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping"/>
+
+  <!-- The JAXB marshaller for the messages and domain objects. -->
+  <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    <property name="contextPaths">
+      <list>
+        <value>org.mpilone.spring.web.domain</value>
+        <value>org.mpilone.spring.web.domain.messages</value>
+      </list>
+    </property>
+  </bean>
+
+</beans>

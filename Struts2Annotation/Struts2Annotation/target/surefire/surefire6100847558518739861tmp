@@ -1,0 +1,37 @@
+#surefire
+#Sun Oct 28 12:55:24 EDT 2012
+testClassesDirectory=C\:\\TestWorkspace\\Struts2Annotation\\Struts2Annotation\\target\\test-classes
+classPathUrl.4=C\:\\Users\\Y\\.m2\\repository\\com\\opensymphony\\xwork-core\\2.1.6\\xwork-core-2.1.6.jar
+classPathUrl.3=C\:\\Users\\Y\\.m2\\repository\\org\\apache\\struts\\struts2-core\\2.1.8\\struts2-core-2.1.8.jar
+classPathUrl.2=C\:\\Users\\Y\\.m2\\repository\\junit\\junit\\3.8.1\\junit-3.8.1.jar
+useManifestOnlyJar=true
+classPathUrl.1=C\:\\TestWorkspace\\Struts2Annotation\\Struts2Annotation\\target\\classes
+reportsDirectory=C\:\\TestWorkspace\\Struts2Annotation\\Struts2Annotation\\target\\surefire-reports
+classPathUrl.0=C\:\\TestWorkspace\\Struts2Annotation\\Struts2Annotation\\target\\test-classes
+dirscanner.0=directoryScannerOptions
+providerConfiguration=org.apache.maven.surefire.junit.JUnit3Provider
+testSuiteDefinitionTestSourceDirectory=C\:\\TestWorkspace\\Struts2Annotation\\Struts2Annotation\\src\\test\\java
+surefireClassPathUrl.1=C\:\\Users\\Y\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.7.1\\surefire-api-2.7.1.jar
+surefireClassPathUrl.0=C\:\\Users\\Y\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-junit3\\2.7.1\\surefire-junit3-2.7.1.jar
+report.2=org.apache.maven.surefire.report.XMLReporter
+useSystemClassLoader=true
+report.1=org.apache.maven.surefire.report.BriefFileReporter
+report.0=org.apache.maven.surefire.report.ForkingConsoleReporter
+excludes0=**/*$*
+isTrimStackTrace=true
+dirscanner.0.params=C\:\\TestWorkspace\\Struts2Annotation\\Struts2Annotation\\target\\test-classes|[**/Test*.java, **/*Test.java, **/*TestCase.java]|[**/*$*]
+includes2=**/*TestCase.java
+enableAssertions=true
+includes1=**/*Test.java
+failIfNoTests=false
+includes0=**/Test*.java
+classPathUrl.12=C\:\\Users\\Y\\.m2\\repository\\org\\apache\\struts\\struts2-convention-plugin\\2.1.8\\struts2-convention-plugin-2.1.8.jar
+dirscanner.0.types=java.io.File|java.util.ArrayList|java.util.ArrayList
+classPathUrl.11=C\:\\Program Files\\Java\\jdk1.6.0_26\\jre\\..\\lib\\tools.jar
+classPathUrl.10=C\:\\Users\\Y\\.m2\\repository\\commons-io\\commons-io\\1.3.2\\commons-io-1.3.2.jar
+classPathUrl.9=C\:\\Users\\Y\\.m2\\repository\\commons-fileupload\\commons-fileupload\\1.2.1\\commons-fileupload-1.2.1.jar
+classPathUrl.8=C\:\\Users\\Y\\.m2\\repository\\ognl\\ognl\\2.7.3\\ognl-2.7.3.jar
+classPathUrl.7=C\:\\Users\\Y\\.m2\\repository\\org\\freemarker\\freemarker\\2.3.15\\freemarker-2.3.15.jar
+childDelegation=false
+classPathUrl.6=C\:\\Users\\Y\\.m2\\repository\\commons-logging\\commons-logging\\1.1.1\\commons-logging-1.1.1.jar
+classPathUrl.5=C\:\\Users\\Y\\.m2\\repository\\org\\springframework\\spring-test\\2.5.6\\spring-test-2.5.6.jar

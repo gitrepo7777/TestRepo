@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+  <description>Spring Web Service and REST Endpoint</description>
+  <display-name>Spring WS and REST</display-name>
+
+  <!-- Context Parameters -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>WEB-INF/WeatherService.xml</param-value>
+  </context-param>
+
+  <context-param>  
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>WEB-INF/log4j.xml</param-value>
+  </context-param>
+  
+  <!-- Listeners -->
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--  Servlets -->
+  <servlet>
+    <description>Weather Soap Service</description>
+    <display-name>Weather Soap Service</display-name>
+    <servlet-name>WeatherSoapService</servlet-name>
+    <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet>
+    <description>Weather Rest Xml Service</description>
+    <display-name>Weather Rest Xml Service</display-name>
+    <servlet-name>WeatherRestXmlService</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet>
+    <description>Weather Rest Json Service</description>
+    <display-name>Weather Rest Json Service</display-name>
+    <servlet-name>WeatherRestJsonService</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>WeatherSoapService</servlet-name>
+    <url-pattern>/soap</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>WeatherRestXmlService</servlet-name>
+    <url-pattern>/xml/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>WeatherRestJsonService</servlet-name>
+    <url-pattern>/json/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- Filters -->
+  
+  <!-- Filter Mappings -->
+  
+</web-app>

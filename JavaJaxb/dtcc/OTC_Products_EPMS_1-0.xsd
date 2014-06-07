@@ -1,0 +1,647 @@
+<?xml version ="1.0" encoding = "UTF-8"?>
+<xsd:schema 
+    targetNamespace="OTC_Products_EPMS_1-0" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns="OTC_Products_EPMS_1-0"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:fpml="http://www.fpml.org/2009/FpML-4-7"
+    xsi:schemaLocation="http://www.fpml.org/2009/FpML-4-7 /xmls/OTC/fpml-main-4-7.xsd"     version="1-0_2010-11-13">
+    <xsd:import namespace="http://www.fpml.org/2009/FpML-4-7" schemaLocation="../xmls/OTC/fpml-main-4-7.xsd"/>
+    
+    
+    <xsd:complexType name="EquityTrade">
+        <xsd:sequence>
+            <xsd:element ref="trade" minOccurs="0"/>    
+            <xsd:element ref="additionalFields" minOccurs="0"/>            
+        </xsd:sequence>
+    </xsd:complexType>  
+    
+    <xsd:complexType name="Trade">
+            <xsd:sequence>
+                <xsd:element ref="tradeHeader"/>                
+                <xsd:element ref="equityOptionTransactionSupplement" minOccurs="0" maxOccurs="2"/>
+                <xsd:element ref="equitySwapTransactionSupplement" minOccurs="0"/>
+                <xsd:element ref="varianceSwapTransactionSupplement" minOccurs="0"/>
+                <xsd:element ref="dividendSwapTransactionSupplement" minOccurs="0"/>
+            </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="TradeHeader">
+        <xsd:sequence>
+            <xsd:element ref="tradeDate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <!-- Equity Option starts here --> 
+    <xsd:complexType name="EquityOptionTransactionSupplement">
+        <xsd:sequence>            
+            <xsd:element ref="buyerPartyReference" minOccurs="0"/>
+            <xsd:element ref="sellerPartyReference" minOccurs="0"/>
+            <xsd:element ref="optionType" minOccurs="0"/>            
+            <xsd:element ref="underlyer" minOccurs="0"/>
+            <xsd:element ref="equityExercise" minOccurs="0"/>    
+            <xsd:element ref="feature" minOccurs="0"/>            
+            <xsd:element ref="fxFeature" minOccurs="0"/>
+            <xsd:element ref="strike" minOccurs="0"/>
+            <xsd:element ref="spotPrice" minOccurs="0"/>
+            <xsd:element ref="numberOfOptions" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Href">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Underlyer">
+        <xsd:sequence>
+            <xsd:element ref="singleUnderlyer" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="SingleUnderlyer">
+        <xsd:sequence>
+            <xsd:choice>                
+                <xsd:element ref="equity" minOccurs="0"/>
+            </xsd:choice>
+            <xsd:element ref="openUnits" minOccurs="0"/>
+            <xsd:element ref="dividendPayout" minOccurs="0"/>             
+        </xsd:sequence>        
+    </xsd:complexType>
+    
+    <xsd:complexType name="IndexEquity">
+        <xsd:sequence>
+            <xsd:element ref="instrumentId" minOccurs="0"/>
+            <xsd:element ref="currency" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Strike">
+        <xsd:sequence>
+            <xsd:element ref="strikePrice" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="EquityExercise">
+        <xsd:choice>
+            <xsd:element ref="equityEuropeanExercise"/>
+            <xsd:element ref="equityAmericanExercise"/> 
+            <xsd:element ref="equityBermudaExercise"/>
+        </xsd:choice>
+    </xsd:complexType>
+    
+    <xsd:complexType name="EquityEuropeanExercise">
+        <xsd:sequence>
+            <xsd:element ref="expirationDate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="EquityAmericanExercise">
+        <xsd:sequence>
+            <xsd:element ref="expirationDate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="EquityBermudaExercise">
+        <xsd:sequence>
+            <xsd:element ref="expirationDate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ExpirationDate">
+        <xsd:sequence>
+            <xsd:element ref="adjustableDate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="AdjustableDate">
+        <xsd:sequence>
+            <xsd:element ref="unadjustedDate" minOccurs="0"/>
+            <xsd:element ref="dateAdjustments" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:ID"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="IdentifiedDate">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:date">
+                <xsd:attribute name="id" type="xsd:ID"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="BusinessDayAdjustments">
+        <xsd:sequence>
+            <xsd:element ref="businessDayConvention" minOccurs="0"/>           
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:ID"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Feature">
+        <xsd:sequence>
+            <xsd:element ref="asian" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Asian">
+        <xsd:sequence>
+            <xsd:element ref="averagingInOut" minOccurs="0"/>            
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="FxFeature">
+        <xsd:sequence>
+            <xsd:element ref="quanto" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Quanto">
+        <xsd:sequence>
+            <xsd:element ref="fxRate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="FxRate">
+        <xsd:sequence>
+            <xsd:element ref="rate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+        
+    <!-- Element Declarations -->
+    <xsd:element name="trade" type="Trade"/>
+    <xsd:element name="tradeHeader" type="TradeHeader"/>
+    <xsd:element name="equityOptionTransactionSupplement" type="EquityOptionTransactionSupplement"/>
+    <xsd:element name="tradeDate" type="xsd:date"/>
+    <xsd:element name="sellerPartyReference" type="Href"/>      
+    <xsd:element name="buyerPartyReference" type="Href"/>      
+    <xsd:element name="underlyer" type="Underlyer"/>
+    <xsd:element name="singleUnderlyer" type="SingleUnderlyer"/>
+    <xsd:element name="index" type="IndexEquity"/>
+    <xsd:element name="equity" type="IndexEquity"/>
+    
+    <xsd:simpleType name="Scheme">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:maxLength value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:element name="instrumentId">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="Scheme">
+            <xsd:attribute name="instrumentIdScheme" type="xsd:anyURI" use="required"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>	
+    
+    <xsd:element name="currency">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="Scheme">
+            <xsd:attribute name="currencyScheme" type="xsd:anyURI" default="http://www.fpml.org/ext/iso4217-2001-08-15"/>			
+            </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="numberOfOptions" type="xsd:decimal"/>
+    <xsd:element name="strike" type="Strike"/>
+    <xsd:element name="strikePrice" type="xsd:decimal"/>
+    <xsd:element name="equityExercise" type="EquityExercise"/>
+    <xsd:element name="equityEuropeanExercise" type="EquityEuropeanExercise"/>
+    <xsd:element name="equityAmericanExercise" type="EquityAmericanExercise"/> 
+    <xsd:element name="equityBermudaExercise" type="EquityBermudaExercise"/>
+    <xsd:element name="expirationDate" type="ExpirationDate"/>
+    <xsd:element name="adjustableDate" type="AdjustableDate"/>
+    <xsd:element name="unadjustedDate" type="IdentifiedDate"/>
+    <xsd:element name="dateAdjustments" type="BusinessDayAdjustments"/>
+    <xsd:element name="businessDayConvention" type="fpml:BusinessDayConventionEnum"/>  
+    <xsd:element name="feature" type="Feature"/>
+    <xsd:element name="asian" type="Asian"/>
+    <xsd:element name="averagingInOut" type="fpml:AveragingInOutEnum"/>
+    <xsd:element name="optionType" type="fpml:OptionTypeEnum"/>
+    <xsd:element name="fxFeature" type="FxFeature"/>
+    <xsd:element name="quanto" type="Quanto"/>
+    <xsd:element name="fxRate" type="FxRate"/>
+    <xsd:element name="rate" type="xsd:decimal"/>
+    <xsd:element name="spotPrice" type="xsd:decimal"/>   
+    <!-- Equity Option Ends here -->
+    
+    
+    <!-- Equity Swap starts here -->
+    <xsd:complexType name="EquitySwapTransactionSupplement">
+        <xsd:sequence>
+        	<xsd:element ref="returnLeg" minOccurs="0"/>
+        	<xsd:element ref="interestLeg" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ReturnLeg">
+    	<xsd:sequence>
+    	 	<xsd:element ref="payerPartyReference" minOccurs="0"/>
+    	    <!-- payerPartyReference is required for Index swap and not allowed for share swap -->
+    	            <xsd:element ref="effectiveDate" minOccurs="0"/>	
+    	            <xsd:element ref="terminationDate" minOccurs="0"/>
+    		<xsd:element ref="underlyer" minOccurs="0"/>
+    	   	<xsd:element ref="rateOfReturn" minOccurs="0"/>
+    		<xsd:element ref="notional" minOccurs="0"/>
+			<xsd:element ref="amount" minOccurs="0"/>           
+    	  	<xsd:element ref="return" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="InterestLeg">
+    	<xsd:sequence>
+    		<xsd:element ref="payerPartyReference" minOccurs="0"/>
+       		<!-- payerAccountReference is required for Index swap and not allowed for share swap -->
+    		<xsd:element ref="interestLegCalculationPeriodDates" minOccurs="0"/>
+    	  	<xsd:element ref="interestCalculation" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="InterestCalculation">
+    	<xsd:sequence>
+    	        <xsd:element ref="floatingRateCalculation" minOccurs="0"/>	
+    	        <xsd:element ref="dayCountFraction" minOccurs="0"/>
+    	        <xsd:element ref="compounding" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="FloatingRateCalculation">
+    	<xsd:sequence>
+    		<xsd:element ref="floatingRateIndex" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Compounding">
+    	<xsd:sequence>
+    		<xsd:element ref="compoundingRate" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="CompoundingRate">
+    	<xsd:sequence>
+    		<xsd:element ref="specificRate" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="SpecificRate">
+    	<xsd:sequence>
+    		<xsd:element ref="fixedRate" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="InterestLegCalculationPeriodDates">
+    	<xsd:sequence>
+    		<xsd:element ref="effectiveDate" minOccurs="0"/>
+    		<xsd:element ref="terminationDate" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="EffectiveDate">
+    	<xsd:sequence>
+    		<xsd:element ref="adjustableDate" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+        
+    <xsd:complexType name="TerminationDate">
+    	<xsd:sequence>
+    		<xsd:element ref="adjustableDate" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Notional">
+    	<xsd:sequence>
+    		<xsd:element ref="notionalAmount" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Return">
+    	<xsd:sequence>
+    		<xsd:element ref="dividendConditions" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Amount" mixed="true">
+        <xsd:sequence>	
+     		<xsd:element ref="currency" minOccurs="0"/>
+     		<xsd:element ref="amount" minOccurs="0"/>
+      		<xsd:element ref="calculationDates" minOccurs="0"/>
+     		<xsd:element ref="observationStartDate" minOccurs="0"/>                
+     		<xsd:element ref="variance" minOccurs="0"/>   	                
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    
+    <xsd:complexType name="RateOfReturnType">
+    	<xsd:sequence>
+    	   	<xsd:element ref="initialPrice" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ValuationPriceFinal">
+    	<xsd:sequence>
+    		<xsd:element ref="netPrice" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+  	<xsd:complexType name="InitialPrice">
+    	<xsd:sequence>
+    		<xsd:element ref="netPrice" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="NetPrice">
+    	<xsd:sequence>
+    		<xsd:element ref="amount" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+       
+    <xsd:complexType name="CalculationDates">
+   		<xsd:sequence>
+   			<xsd:element ref="periodicDates" minOccurs="0"/>
+   		</xsd:sequence>
+   	</xsd:complexType>
+   	
+   	<xsd:complexType name="PeriodicDates">
+   		<xsd:sequence>
+   			<xsd:element ref="calculationStartDate" minOccurs="0"/>
+   			<xsd:element ref="calculationEndDate" minOccurs="0"/>
+   		</xsd:sequence>
+   	</xsd:complexType>
+   	
+   	<xsd:complexType name="CalculationEndDate">
+   		<xsd:sequence>
+   			<xsd:element ref="adjustableDate" minOccurs="0"/>
+   		</xsd:sequence>
+   	</xsd:complexType>
+   	
+   	   	<xsd:complexType name="CalculationStartDate">
+   		<xsd:sequence>
+   			<xsd:element ref="adjustableDate" minOccurs="0"/>
+   		</xsd:sequence>
+   	</xsd:complexType>
+   		
+    <xsd:complexType name="DividendConditions">
+    	<xsd:sequence>
+    		<xsd:element ref="dividendPaymentDate" minOccurs="0"/>
+    		<xsd:element ref="currency" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="DividendPaymentDate">
+    	<xsd:sequence>
+    		<xsd:element ref="adjustableDate" minOccurs="0"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    	
+    <xsd:complexType name="NotionalAmount">
+    	<xsd:sequence>
+    		<xsd:element ref="currency" minOccurs="0"/>	
+    	  	<xsd:element ref="amount" minOccurs="0"/>    		
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+  	<xsd:complexType name="DividendPayout">
+		<xsd:sequence>
+			<xsd:element ref="dividendPayoutRatio" minOccurs="0"/>
+			<xsd:element ref="dividendPayment" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="DividendPayment">
+		<xsd:sequence>
+			<xsd:element ref="amount" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+    
+    <!-- Element Declarations -->
+    <xsd:element name="equitySwapTransactionSupplement" type="EquitySwapTransactionSupplement"/>
+    <xsd:element name="returnLeg" type="ReturnLeg"/>
+    <xsd:element name="interestLeg" type="InterestLeg"/>
+    <xsd:element name="terminationDate" type="TerminationDate"/>
+    <xsd:element name="notional" type="Notional"/>
+    <xsd:element name="payerPartyReference" type="Href"/>
+    <xsd:element name="return" type="Return"/>
+    <xsd:element name="amount" type="Amount"/>
+    <xsd:element name="rateOfReturn" type="RateOfReturnType"/>
+    <xsd:element name="valuationPriceFinal" type="ValuationPriceFinal"/>
+    <xsd:element name="initialPrice" type="InitialPrice"/>
+    <xsd:element name="netPrice" type="NetPrice"/>
+    <xsd:element name="dividendConditions" type="DividendConditions"/>
+    <xsd:element name="calculationDates" type="CalculationDates"/>
+    <xsd:element name="periodicDates" type="PeriodicDates"/>
+    <xsd:element name="calculationEndDate" type="CalculationEndDate"/>
+    <xsd:element name="CalculationEndDate" type="AdjustableDate"/>
+    <xsd:element name="dividendPaymentDate" type="DividendPaymentDate"/> 
+    <xsd:element name="dividendPayout" type="DividendPayout"/>
+    <xsd:element name="dividendPayment" type="DividendPayment"/>
+    <xsd:element name="DividendPaymentDate" type="AdjustableDate"/>    
+    <xsd:element name="payerAccountReference" type="Href"/> 
+    <xsd:element name="interestCalculation" type="InterestCalculation"/>
+    <xsd:element name="interestLegCalculationPeriodDates" type="InterestLegCalculationPeriodDates"/>
+    <xsd:element name="effectiveDate" type="EffectiveDate"/>
+    <xsd:element name="dayCountFraction" type="fpml:DayCountFraction"/>
+    <xsd:element name="floatingRateCalculation" type="FloatingRateCalculation"/>
+    <xsd:element name="compounding" type="Compounding"/>
+    <xsd:element name="floatingRateIndex" type="FloatingRateIndex"/>
+    <xsd:element name="compoundingRate" type="CompoundingRate"/>
+    <xsd:element name="specificRate" type="SpecificRate"/>
+    <xsd:element name="notionalAmount" type="NotionalAmount"/>
+    <xsd:element name="calculationStartDate" type="CalculationStartDate"/>
+
+    
+	<xsd:complexType name="FloatingRateIndex">
+		<xsd:simpleContent>
+			<xsd:extension base="Scheme">
+				<xsd:attribute name="floatingRateIndexScheme" type="xsd:anyURI" default="http://www.fpml.org/ext/isda-2000-definitions"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+    
+  	
+    <xsd:element name="fixedRate" type="xsd:decimal"/>
+    <xsd:element name="openUnits" type="xsd:decimal"/>
+    <xsd:element name="dividendPayoutRatio" type="xsd:decimal"/>
+    <!-- Equity Swap starts here -->
+    
+    <!-- Variance Swap starts here -->    
+    
+  <xsd:complexType name="VarianceSwapTransactionSupplement">
+        <xsd:sequence>
+        	<xsd:element ref="varianceLeg"/>
+        </xsd:sequence>
+    </xsd:complexType> 
+    
+    <xsd:complexType name="VarianceLeg">
+    	<xsd:sequence>
+    		<xsd:element ref="payerPartyReference" minOccurs="0"/>
+    	   	<xsd:element ref="receiverPartyReference" minOccurs="0"/>
+    	  	<xsd:element ref="terminationDate" minOccurs="0"/>
+    		<xsd:element ref="underlyer" minOccurs="0"/>
+    	   	<xsd:element ref="valuation" minOccurs="0"/>        
+    	 	<xsd:element ref="amount" minOccurs="0"/>    	            
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+<!-- For underlyer, singleUnderlyer and currency complexTypes/elements, please refer under Equity Swap fields -->
+	
+	<xsd:complexType name="Variance">
+		<xsd:sequence>
+		    <xsd:element ref="initialLevel" minOccurs="0"/>	
+		    <xsd:element ref="expectedN" minOccurs="0"/>
+		    <xsd:element ref="varianceAmount" minOccurs="0"/>
+		    <xsd:element ref="varianceStrikePrice" minOccurs="0"/>
+		    <xsd:element ref="unadjustedVarianceCap" minOccurs="0"/>
+		    <xsd:element ref="vegaNotionalAmount" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Valuation">
+		<xsd:sequence>
+			<xsd:element ref="valuationDate" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ValuationDate">
+		<xsd:sequence>
+			<xsd:element ref="adjustableDate" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="VarianceAmount">
+		<xsd:sequence>
+			<xsd:element ref="currency" minOccurs="0"/>
+		   	<xsd:element ref="amount" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ObservationStartDate">
+		<xsd:sequence>
+			<xsd:element ref="adjustableDate" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    
+  	<!-- Element Declarations --> 
+    <xsd:element name="varianceSwapTransactionSupplement" type="VarianceSwapTransactionSupplement"/>
+    <xsd:element name="receiverPartyReference" type="Href"/>
+    <xsd:element name="varianceLeg" type="VarianceLeg"/>
+    <xsd:element name="valuation" type="Valuation"/>
+    <xsd:element name="variance" type="Variance"/>
+    <xsd:element name="observationStartDate" type="ObservationStartDate"/>
+    <xsd:element name="valuationDate" type="ValuationDate"/>
+    <xsd:element name="vegaNotionalAmount" type="xsd:decimal"/>
+    <xsd:element name="varianceAmount" type="VarianceAmount"/>
+    <xsd:element name="varianceStrikePrice" type="xsd:decimal"/>
+    <xsd:element name="expectedN" type="xsd:positiveInteger"/>
+    <xsd:element name="initialLevel" type="xsd:decimal"/>
+    <xsd:element name="unadjustedVarianceCap" type="xsd:decimal"/>
+    
+    <!-- Variance Swap ends here -->    
+    
+
+    <!-- Dividend Swap starts here -->   
+    
+ 	<xsd:complexType name="DividendSwapTransactionSupplement">
+        <xsd:sequence>
+        	<xsd:element ref="dividendLeg" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType> 
+    
+    <xsd:complexType name="DividendLeg">
+   		<xsd:sequence>
+   			<xsd:element ref="effectiveDate" minOccurs="0"/>
+   			<xsd:element ref="terminationDate" minOccurs="0"/>
+   			<xsd:element ref="underlyer" minOccurs="0"/>
+   			<xsd:element ref="fxFeature" minOccurs="0"/>	
+  			<xsd:element ref="dividendPeriod" minOccurs="0"/>   			
+   		</xsd:sequence>
+   	</xsd:complexType>
+   	
+	<xsd:complexType name="DividendPeriod">
+   		<xsd:sequence>
+   			<xsd:element ref="unadjustedStartDate" minOccurs="0"/>	
+   		 	<xsd:element ref="unadjustedEndDate" minOccurs="0"/>   			
+   			<xsd:element ref="fixedStrike" minOccurs="0"/>
+   		</xsd:sequence>
+	</xsd:complexType>
+    
+    <!-- Element Declarations --> 
+    <xsd:element name="dividendSwapTransactionSupplement" type="DividendSwapTransactionSupplement"/>
+    <xsd:element name="dividendLeg" type="DividendLeg"/>
+    <xsd:element name="dividendPeriod" type="DividendPeriod"/>   
+    <xsd:element name="unadjustedEndDate" type="xsd:date"/>
+    <xsd:element name="unadjustedStartDate" type="xsd:date"/>
+    <xsd:element name="fixedStrike" type="xsd:decimal"/>   
+    
+    
+    
+    <!-- Other Product starts here -->
+    <xsd:complexType name="OtherProductType">
+        <xsd:sequence>
+            <xsd:element ref="TradeHeader" minOccurs="0"/>
+            <xsd:element ref="TerminationDate" minOccurs="0"/>
+            <xsd:element ref="Underlyer" minOccurs="0"/>
+            <xsd:element ref="NumberOfOptions" minOccurs="0"/>			
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:element name="TradeHeader" type="TradeHeader"/>
+    <xsd:element name="TerminationDate" type="TerminationDate"/>
+    <xsd:element name="Underlyer" type="Underlyer"/>
+    <xsd:element name="NumberOfOptions" type="fpml:NonNegativeDecimal"/>
+    <xsd:element name="OtherProduct" type="OtherProductType"/>
+
+
+<!-- additionalal elements to all products starts here -->
+<xsd:complexType name="additionalFieldsType">
+    <xsd:sequence>
+        <xsd:element ref="initialFX" minOccurs="0"/>
+        <xsd:element ref="finalFX" minOccurs="0"/>
+        <xsd:element ref="crossCurrencyDividendsFX" minOccurs="0"/>
+        <xsd:element ref="financingRate" minOccurs="0"/>
+        <xsd:element ref="closeUnits" minOccurs="0"/>
+        <xsd:element ref="finalPriceValuation" minOccurs="0"/>
+        <xsd:element ref="varianceObservations" minOccurs="0"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="FXType">
+    <xsd:sequence>
+        <xsd:element ref="fxRate" minOccurs="0"/>
+        </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="FinalPriceValuationType">
+    <xsd:sequence>        
+        <xsd:element ref="valuationPriceFinal" minOccurs="0"/>    		
+    </xsd:sequence>
+</xsd:complexType>
+
+    <xsd:complexType name="varianceObservationsType">
+        <xsd:sequence>        
+            <xsd:element ref="varianceObservation" minOccurs="0" maxOccurs="unbounded"/>    		
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="varianceObservationType">
+        <xsd:sequence>        
+            <xsd:element ref="date" minOccurs="0"/>
+            <xsd:element ref="fixing" minOccurs="0"/>    
+        </xsd:sequence>
+    </xsd:complexType>
+
+<xsd:element name="initialFX" type ="FXType"/>
+<xsd:element name="finalFX" type ="FXType"/>
+<xsd:element name="crossCurrencyDividendsFX" type ="FXType"/>
+<xsd:element name="financingRate" type ="FxRate"/>
+<xsd:element name="closeUnits" type="xsd:integer"/>
+<xsd:element name="finalPriceValuation" type="FinalPriceValuationType"/>
+ <xsd:element name="additionalFields" type="additionalFieldsType"/> 
+ <xsd:element name="date" type="xsd:date"/>
+ <xsd:element name="fixing"  type="xsd:string"/>
+<xsd:element name="varianceObservation"  type="varianceObservationType"/>
+<xsd:element name="varianceObservations"  type="varianceObservationsType"/>
+
+</xsd:schema>

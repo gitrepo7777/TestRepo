@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+    	http://www.springframework.org/schema/context 
+    	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <!-- Locates all the Controllers based on the annotations. -->
+  <context:component-scan base-package="org.mpilone.spring.web.rest"/>
+  <context:annotation-config/>
+
+  <!--
+    Maps incoming requests to the appropriate controller based on the annotations on
+    the controller methods.
+  -->
+  <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+  <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="messageConverters">
+      <list>
+        <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+          <property name="objectMapper" ref="jacksonObjectMapper"/>
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+ <!--
+    Maps view names to the appropriate view based on the view name and 
+    finds the most compatible view among any matching views based on 
+    the requested content type. It may be desireable to add and configure
+    this resolver if you merge the XML and JSON rest servlets into a single
+    configuration.
+  -->
+  <!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"/> -->
+  
+  <!-- Jackson ObjectMapper that can serialize and deserialize to and from JSON.
+  The ObjectMapper is similar to JAXB marshallers. -->
+  <bean class="org.mpilone.spring.web.rest.MapUnwrappingObjectMapper" id="jacksonObjectMapper"/>
+
+ <!-- The Jackson view that uses the Jackson object mapper for serialization. -->
+ <bean id="restJsonMarshalView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+    <property name="objectMapper" ref="jacksonObjectMapper"/>
+    <property name="renderedAttributes">
+      <list>
+        <value>response</value>
+      </list>
+    </property>
+  </bean>
+  
+</beans>
